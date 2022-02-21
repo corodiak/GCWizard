@@ -134,11 +134,11 @@ class _ExifReaderState extends State<ExifReader> {
       padding: EdgeInsets.only(top: 10),
     ));
     _decorateFile(widgets, file);
+    _decorateGps(widgets);
     _decorateImage(widgets, image);
     _decorateFileTypeSpecific(widgets, file);
     _decorateThumbnail(widgets);
     _decorateExifSections(widgets, _tableTags);
-    _decorateGps(widgets);
     _decorateHiddenData(widgets);
     return widgets;
   }
@@ -262,8 +262,8 @@ class _ExifReaderState extends State<ExifReader> {
               [i18n(context, 'exif_filename'), platformFile.name ?? ''],
               [i18n(context, 'exif_filesize_bytes'), platformFile.bytes?.length ?? 0],
               [i18n(context, 'exif_filesize_kb'), (platformFile.bytes?.length / 1024).ceil() ?? 0],
-              lastModified != null ? ['lastModified', formatDate(_file?.lastModifiedSync())] : null,
-              lastAccessed != null ? ['lastAccessed', formatDate(_file?.lastAccessedSync())] : null,
+              lastModified != null ? [i18n(context, 'exif_lastmodified'), lastModified] : null,
+              lastAccessed != null ? [i18n(context, 'exif_lastaccessed'), lastAccessed] : null,
               [i18n(context, 'exif_extension'), platformFile.extension ?? '']
             ],
           ))));
